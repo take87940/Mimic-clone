@@ -8,6 +8,7 @@ export default function PoYaSurveyForm({ onClose }) {
   const [scores, setScores] = useState({});
   const [mysteryId, setMysteryId] = useState('');
   const [storeName, setStoreName] = useState('');
+  const [note, setNote] = useState('');
   const [file, setFile] = useState(null);
 
   const handleScoreClick = (questionId, value) => {

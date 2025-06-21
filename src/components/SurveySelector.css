@@ -70,3 +70,31 @@
   background: #666;
 }
 
+@media (max-width: 768px) {
+  .survey-selector {
+    width: 92%;
+    max-height: 90vh;              /* 限制最高為螢幕高度的 90% */
+    overflow-y: auto;              /* 超出時可垂直捲動 */
+    padding: 5px;
+    margin: 5vh auto;              /* 上下都留 5% 空間 */
+  }
+
+  .survey-selector h2 {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .survey-selector li {
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  .close-button {
+    font-size: 13px;
+    padding: 8px 12px;
+    width: 100%;
+    margin-top: 20px;
+    flex-shrink: 0;                /* 防止被壓縮隱藏 */
+  }
+}
