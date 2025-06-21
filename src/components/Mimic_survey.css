@@ -38,3 +38,129 @@
     background-position: 0% 50%;
   }
 }
+
+/* 通用 modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* 問卷選擇卡片 */
+.survey-selector {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.survey-selector h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.survey-selector ul {
+  list-style: none;
+  padding: 0;
+}
+
+.survey-selector li {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.survey-selector li:hover {
+  background: #f0f0f0;
+}
+
+.close-button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: #999;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+}
+
+/* 問卷表單樣式 */
+.survey-form {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  width: 95%;
+  max-width: 700px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.survey-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.survey-form fieldset {
+  border: none;
+  margin-bottom: 24px;
+}
+
+.survey-form label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.survey-form input[type="number"],
+.survey-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.form-actions button {
+  padding: 8px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-actions button[type="submit"] {
+  background: #007bff;
+  color: white;
+}
+
+.form-actions button[type="button"] {
+  background: #999;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+

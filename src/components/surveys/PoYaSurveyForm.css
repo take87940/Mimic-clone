@@ -1,0 +1,198 @@
+/* 更安全的覆寫方式：若你表單在 Modal 中出現，可針對容器限定選擇器 */
+.survey-form {
+  background: #abbfe0;
+  padding: 40px;
+  border-radius: 20px;
+  width: 95%;
+  max-width: 720px;
+  max-height: 80vh;
+  overflow-y: auto;
+  font-family: 'Noto Sans TC', 'Inter', 'Segoe UI', sans-serif;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.03), 0 12px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease;
+}
+
+.survey-form h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #003973;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+}
+
+.survey-form fieldset {
+  border: none;
+  margin-bottom: 32px;
+}
+
+.survey-form legend {
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #222;
+}
+
+.survey-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 備註欄位與總分輸入欄 */
+.survey-form input[type="number"],
+.survey-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fafafa;
+  color: #000;
+  box-sizing: border-box;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+.survey-form input:focus,
+.survey-form textarea:focus {
+  border-color: #1c4c9c;
+  box-shadow: 0 0 0 3px rgba(28, 76, 156, 0.2); /* 高對比 */
+  outline: none;
+}
+
+.survey-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* 評分選項按鈕組 */
+.rating-group {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.rating-option {
+  flex: 1;
+  padding: 10px 0;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  user-select: none;
+  min-width: 40px;
+}
+
+.rating-option:hover {
+  background-color: #dbe7f7;
+}
+
+.rating-option.selected {
+  background: linear-gradient(135deg, #2f5f9c, #4b8abd);
+  color: white;
+  border-color: #2f5f9c;
+  box-shadow: 0 0 6px rgba(47, 95, 156, 0.3);
+  transform: scale(1.05);
+}
+
+/* 按鈕區 */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.form-actions button {
+  padding: 12px 28px;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions button[type="submit"] {
+  background: linear-gradient(135deg, #2f5f9c, #4b8abd);
+  color: white;
+}
+
+.form-actions button[type="submit"]:hover {
+  background: linear-gradient(135deg, #1e4372, #3876a8);
+  transform: scale(1.05);
+}
+
+.form-actions button[type="submit"]:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-actions button[type="button"] {
+  background: #ccc;
+  color: #333;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #bbb;
+  transform: scale(1.05);
+}
+
+.form-actions button[type="button"]:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 動畫 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.total-score-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.total-score-label {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+.total-score-box {
+  padding: 6px 16px;
+  min-width: 60px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2f5f9c;
+  background-color: #eef4fb;
+  border: 1px solid #c8dcf0;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(47, 95, 156, 0.05);
+}
+

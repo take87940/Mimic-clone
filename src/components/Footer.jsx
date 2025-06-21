@@ -27,9 +27,6 @@ export default function Footer() {
                     <a href='https://www.mimic.com.tw/web/page/tw/terms_of_use'>使用條款</a>
                     <a href='https://www.mimic.com.tw/web/page/tw/sitemap'>網站地圖</a>
                 </div>
-                <div className='footer-copy'>
-                    Copyright © The Mimic Company 版權所有
-                </div>
             </div>
         </footer>
     )

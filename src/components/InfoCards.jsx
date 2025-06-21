@@ -13,7 +13,7 @@ export default function InfoCards() {
           We love Taiwan 海洋淨灘活動 (2018)<br />
           我們舉辦淨灘、專業講座，用行動回饋台灣。
         </p>
-        <a href="https://www.mimic.com.tw/web/page/tw/news/36">瞭解更多 &gt;&gt;</a>
+        <a href="/">瞭解更多 &gt;&gt;</a>
       </div>
 
       <div className="card">
@@ -22,7 +22,7 @@ export default function InfoCards() {
         <p>
           提供神秘顧客聯訪、訪查評鑑、客戶服務專案評估、訓練課程等專業服務。
         </p>
-        <a href="https://www.mimic.com.tw/web/page/tw/service_plan">瞭解更多 &gt;&gt;</a>
+        <a href="/">瞭解更多 &gt;&gt;</a>
       </div>
 
       <div className="card">
@@ -33,7 +33,7 @@ export default function InfoCards() {
           <li>你觀察敏銳？</li>
           <li>你想要影響企業顧客服務的品質？</li>
         </ul>
-        <a href="https://www.mimic.com.tw/web/page/tw/join">瞭解更多 &gt;&gt;</a>
+        <a href="/">瞭解更多 &gt;&gt;</a>
       </div>
     </section>
   )
