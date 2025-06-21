@@ -95,7 +95,7 @@
 
   .info-cards .card {
     flex: 0 0 auto;
-    width: 75%;
+    width: 90%;
     min-width: 240px;
     max-width: 280px;
   }
