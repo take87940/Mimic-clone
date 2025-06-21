@@ -1,6 +1,5 @@
 // components/surveys/AmbassadorSurveyForm.jsx
 import { useState, useMemo, useRef } from 'react';
-import { imgbbUploader } from 'imgbb-uploader';
 import emailjs from '@emailjs/browser';
 import './LouisaSurveyForm.css';
 
