@@ -130,3 +130,33 @@ button:hover {
     transform: scale(1);
   }
 }
+
+@media (max-width: 768px) {
+  .survey-form {
+    max-height: 90vh;          /* 最多佔螢幕 90% 高度 */
+    overflow-y: auto;          /* 垂直捲動 */
+    margin: 5vh auto;          /* 上下留白避免貼邊 */
+    padding: 24px;             /* 手機上 padding 稍微縮小 */
+  }
+
+  .survey-form h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .rating-option {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .form-actions {
+    flex-direction: column;    /* 按鈕垂直排列避免擁擠 */
+    gap: 8px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
