@@ -1,0 +1,132 @@
+/* components/surveys/LouisaSurveyForm.css */
+
+.survey-form {
+  background: white;
+  padding: 32px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  font-family: "Noto Sans TC", sans-serif;
+  animation: fadeIn 0.3s ease;
+  margin: auto;
+}
+
+.survey-form h2 {
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(to right, #2f6db7, #65aee8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.survey-form fieldset {
+  border: none;
+  margin-bottom: 24px;
+}
+
+.survey-form legend {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #21538e;
+  font-size: 18px;
+}
+
+.survey-form label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.rating-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.rating-option {
+  background: #d2e6f7;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  color: #2f6db7;
+  user-select: none;
+}
+
+.rating-option.selected {
+  background: #3c7dc4;
+  color: white;
+}
+
+.rating-option:hover {
+  background: #2b6ab0;
+  color: white;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-family: inherit;
+  margin-top: 4px;
+}
+
+.total-score-row {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.total-score-label {
+  flex: 1;
+  font-weight: bold;
+}
+
+.total-score-box {
+  padding: 8px 12px;
+  background: #3c7dc4;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #3c7dc4;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #2b6ab0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

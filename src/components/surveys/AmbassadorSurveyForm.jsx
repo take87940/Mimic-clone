@@ -1,10 +1,10 @@
-// components/surveys/WatsonsSurveyForm.jsx
+// components/surveys/AmbassadorSurveyForm.jsx
 import { useState, useMemo, useRef } from 'react';
+import { imgbbUploader } from 'imgbb-uploader';
 import emailjs from '@emailjs/browser';
+import './LouisaSurveyForm.css';
 
-import './WatsonsSurveyForm.css';
-
-export default function WatsonsSurveyForm({ onClose }) {
+export default function AmbassadorSurveyForm({ onClose }) {
   const [scores, setScores] = useState({});
   const [mysteryId, setMysteryId] = useState('');
   const [storeName, setStoreName] = useState('');
@@ -46,7 +46,7 @@ export default function WatsonsSurveyForm({ onClose }) {
         'service_kqcyfpq',
         'template_h7936pf',
         {
-          store: '屈臣氏',
+          store: '國賓影城',
           total,
           score_list: Object.entries(scores).map(([k, v]) => `${k}：${v} 分`).join('\n'),
           note: `神秘客編號：${mysteryId}\n分店名稱：${storeName}\n${note}`,
@@ -65,6 +65,7 @@ export default function WatsonsSurveyForm({ onClose }) {
   reader.readAsDataURL(file);
 };
 
+
   const renderRating = (questionId, max = 5) => (
     <div className="rating-group">
       {Array.from({ length: max + 1 }, (_, value) => (
@@ -81,42 +82,43 @@ export default function WatsonsSurveyForm({ onClose }) {
 
   return (
     <form className="survey-form" onSubmit={handleSubmit} ref={formRef}>
-      <h2>屈臣氏 秘密客評分表</h2>
+      <h2>國賓影城 秘密客評分表</h2>
+      
       <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
       <label>分店名稱：<input type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
 
       <fieldset>
-        <legend>1. 門市環境（滿分 20 分）</legend>
-        <label>店面整潔、乾淨：{renderRating('q1')}</label>
-        <label>商品陳列整齊、標價清楚：{renderRating('q2')}</label>
-        <label>動線設計良好、不擁擠：{renderRating('q3')}</label>
-        <label>音樂、燈光、氣味舒適：{renderRating('q4')}</label>
+        <legend>1. 環境與設施（滿分 20 分）</legend>
+        <label>影城外觀整潔、招牌清晰：{renderRating('q1')}</label>
+        <label>大廳、售票區、候影區乾淨整齊：{renderRating('q2')}</label>
+        <label>廁所整潔、無異味、備品齊全：{renderRating('q3')}</label>
+        <label>指標明確，動線設計順暢：{renderRating('q4')}</label>
       </fieldset>
 
       <fieldset>
-        <legend>2. 服務態度（滿分 30 分）</legend>
-        <label>進店是否有主動打招呼：{renderRating('q5')}</label>
-        <label>店員服裝儀容整潔：{renderRating('q6')}</label>
-        <label>是否主動詢問需求：{renderRating('q7')}</label>
-        <label>回答問題專業、親切有禮：{renderRating('q8')}</label>
-        <label>結帳時是否主動推銷活動、會員卡：{renderRating('q9')}</label>
-        <label>離店是否有道別或感謝用語：{renderRating('q10')}</label>
+        <legend>2. 服務態度（滿分 25 分）</legend>
+        <label>售票人員態度親切、有禮貌：{renderRating('q5')}</label>
+        <label>售票人員是否主動介紹座位、場次或優惠：{renderRating('q6')}</label>
+        <label>賣品部人員服務態度良好：{renderRating('q7')}</label>
+        <label>驗票人員服務態度良好、動作俐落：{renderRating('q8')}</label>
+        <label>影城人員有主動協助指引或回答問題：{renderRating('q9')}</label>
       </fieldset>
 
       <fieldset>
-        <legend>3. 商品品質與庫存（滿分 20 分）</legend>
-        <label>熱銷商品是否有現貨：{renderRating('q11')}</label>
-        <label>商品保存狀況良好（無損壞、過期）：{renderRating('q12')}</label>
-        <label>試用品乾淨、齊全：{renderRating('q13')}</label>
-        <label>促銷商品有明確標示：{renderRating('q14')}</label>
+        <legend>3. 餐飲商品品質（滿分 20 分）</legend>
+        <label>爆米花新鮮、口感良好：{renderRating('q10')}</label>
+        <label>飲料品質良好、無異味：{renderRating('q11')}</label>
+        <label>餐點（熱食、甜點）新鮮美味：{renderRating('q12')}</label>
+        <label>餐飲區域整潔、桌面乾淨：{renderRating('q13')}</label>
       </fieldset>
 
       <fieldset>
-        <legend>4. 結帳與效率（滿分 20 分）</legend>
-        <label>結帳流程順暢、迅速：{renderRating('q15')}</label>
-        <label>是否有主動詢問發票載具或袋子需求：{renderRating('q16')}</label>
-        <label>發票、找零正確無誤：{renderRating('q17')}</label>
-        <label>是否有提供會員點數累積與兌換資訊：{renderRating('q18')}</label>
+        <legend>4. 觀影體驗（滿分 25 分）</legend>
+        <label>廳內座位整潔、無異味、舒適度佳：{renderRating('q14')}</label>
+        <label>空調溫度適中、無異味：{renderRating('q15')}</label>
+        <label>畫質清晰、音效良好、無雜音：{renderRating('q16')}</label>
+        <label>放映準時、無技術問題：{renderRating('q17')}</label>
+        <label>觀影秩序良好，工作人員有維持秩序：{renderRating('q18')}</label>
       </fieldset>
 
       <fieldset>
@@ -129,8 +131,11 @@ export default function WatsonsSurveyForm({ onClose }) {
         <div className="total-score-box">{total}</div>
       </div>
 
-      <label>秘密客備註與建議（請填寫此次體驗的優點、缺點與改善建議）：<textarea rows="3" value={note} onChange={(e) => setNote(e.target.value)} /></label>
-
+      <label>
+        秘密客備註與建議（請填寫此次體驗的優點、缺點與改善建議）：
+        <textarea rows="3" value={note} onChange={(e) => setNote(e.target.value)} />
+      </label>
+      
       <label>請上傳圖片：
         <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} required />
       </label>

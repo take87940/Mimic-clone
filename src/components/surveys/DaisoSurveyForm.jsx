@@ -1,14 +1,16 @@
-// components/surveys/PoYaSurveyForm.jsx
-import { useState, useMemo } from 'react';
+// components/surveys/DaisoSurveyForm.jsx
+import { useState, useMemo, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
-import './PoYaSurveyForm.css';
+import './LouisaSurveyForm.css';
 
-export default function PoYaSurveyForm({ onClose }) {
+export default function DaisoSurveyForm({ onClose }) {
   const [scores, setScores] = useState({});
   const [mysteryId, setMysteryId] = useState('');
   const [storeName, setStoreName] = useState('');
+  const [note, setNote] = useState('');
   const [file, setFile] = useState(null);
+  const formRef = useRef();
 
   const handleScoreClick = (questionId, value) => {
     setScores(prev => ({ ...prev, [questionId]: value }));
@@ -17,20 +19,6 @@ export default function PoYaSurveyForm({ onClose }) {
   const total = useMemo(() => {
     return Object.values(scores).reduce((sum, val) => sum + (val ?? 0), 0);
   }, [scores]);
-
-  const renderRating = (questionId, max = 5) => (
-    <div className="rating-group">
-      {Array.from({ length: max + 1 }, (_, value) => (
-        <div
-          key={value}
-          className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
-          onClick={() => handleScoreClick(questionId, value)}
-        >
-          {value}
-        </div>
-      ))}
-    </div>
-  );
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -58,7 +46,7 @@ export default function PoYaSurveyForm({ onClose }) {
         'service_kqcyfpq',
         'template_h7936pf',
         {
-          store: '寶雅',
+          store: 'DAISO 大創',
           total,
           score_list: Object.entries(scores).map(([k, v]) => `${k}：${v} 分`).join('\n'),
           note: `神秘客編號：${mysteryId}\n分店名稱：${storeName}\n${note}`,
@@ -77,44 +65,57 @@ export default function PoYaSurveyForm({ onClose }) {
   reader.readAsDataURL(file);
 };
 
+  const renderRating = (questionId, max = 5) => (
+    <div className="rating-group">
+      {Array.from({ length: max + 1 }, (_, value) => (
+        <div
+          key={value}
+          className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
+          onClick={() => handleScoreClick(questionId, value)}
+        >
+          {value}
+        </div>
+      ))}
+    </div>
+  );
+
   return (
-    <form className="survey-form" onSubmit={handleSubmit}>
-      <h2>寶雅 秘密客評分表</h2>
+    <form className="survey-form" onSubmit={handleSubmit} ref={formRef}>
+      <h2>大創 DAISO 秘密客評分表</h2>
       <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
       <label>分店名稱：<input type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
-
       <fieldset>
         <legend>1. 賣場環境（滿分 20 分）</legend>
-        <label>賣場外觀整潔、招牌明顯（0-5 分）：{renderRating('q1')}</label>
-        <label>賣場內部整潔、無雜物堆放（0-5 分）：{renderRating('q2')}</label>
-        <label>商品陳列整齊、標價清楚（0-5 分）：{renderRating('q3')}</label>
-        <label>動線順暢、購物環境舒適（0-5 分）：{renderRating('q4')}</label>
+        <label>賣場外觀整潔、招牌明顯：{renderRating('q1')}</label>
+        <label>賣場內部整潔、無雜物堆放：{renderRating('q2')}</label>
+        <label>地面乾淨、燈光明亮：{renderRating('q3')}</label>
+        <label>空氣流通、無異味：{renderRating('q4')}</label>
       </fieldset>
 
       <fieldset>
-        <legend>2. 服務態度（滿分 30 分）</legend>
-        <label>進店是否有主動打招呵（0-5 分）：{renderRating('q5')}</label>
-        <label>店員服裝整潔、儀容良好（0-5 分）：{renderRating('q6')}</label>
-        <label>主動提供協助、詢問需求（0-5 分）：{renderRating('q7')}</label>
-        <label>回答問題是否專業、有耐心（0-5 分）：{renderRating('q8')}</label>
-        <label>是否主動介紹促銷活動或會員（0-5 分）：{renderRating('q9')}</label>
-        <label>結帳時有禮貌、感謝用語完整（0-5 分）：{renderRating('q10')}</label>
+        <legend>2. 商品陳列與庫存（滿分 25 分）</legend>
+        <label>商品陳列整齊、分類清楚：{renderRating('q5')}</label>
+        <label>標價明確、無錯誤標示：{renderRating('q6')}</label>
+        <label>熱銷商品有現貨：{renderRating('q7')}</label>
+        <label>商品包裝完整、無損壞：{renderRating('q8')}</label>
+        <label>特價、活動商品標示清楚：{renderRating('q9')}</label>
       </fieldset>
 
       <fieldset>
-        <legend>3. 商品品質與庫存（滿分 20 分）</legend>
-        <label>熱銷商品是否有現貨（0-5 分）：{renderRating('q11')}</label>
-        <label>商品無明顯損壞或過期（0-5 分）：{renderRating('q12')}</label>
-        <label>試用品區域乾淨、補充完整（0-5 分）：{renderRating('q13')}</label>
-        <label>促銷商品標示清楚、資訊正確（0-5 分）：{renderRating('q14')}</label>
+        <legend>3. 服務態度（滿分 25 分）</legend>
+        <label>進店是否有基本問候：{renderRating('q10')}</label>
+        <label>店員服裝整潔、儀容良好：{renderRating('q11')}</label>
+        <label>店員是否主動提供協助：{renderRating('q12')}</label>
+        <label>回答顧客詢問時態度親切、解說清楚：{renderRating('q13')}</label>
+        <label>結帳時是否有道謝用語：{renderRating('q14')}</label>
       </fieldset>
 
       <fieldset>
-        <legend>4. 結帳流程與效率（滿分 20 分）</legend>
-        <label>結帳動線順暢、排隊秩序良好（0-5 分）：{renderRating('q15')}</label>
-        <label>結帳速度迅速、準確（0-5 分）：{renderRating('q16')}</label>
-        <label>是否詢問發票載具、購物袋需求（0-5 分）：{renderRating('q17')}</label>
-        <label>是否有提醒會員點數或集點活動（0-5 分）：{renderRating('q18')}</label>
+        <legend>4. 結帳流程（滿分 20 分）</legend>
+        <label>排隊動線明確、秩序良好：{renderRating('q15')}</label>
+        <label>結帳速度順暢、無錯誤：{renderRating('q16')}</label>
+        <label>是否詢問發票載具、購物袋需求：{renderRating('q17')}</label>
+        <label>櫃檯區域整潔、無雜物堆放：{renderRating('q18')}</label>
       </fieldset>
 
       <fieldset>
@@ -127,9 +128,7 @@ export default function PoYaSurveyForm({ onClose }) {
         <div className="total-score-box">{total}</div>
       </div>
 
-      <label>秘密客備註與建議（請填寫此次體驗的優點、缺點與改善建議）：
-        <textarea name="note" rows="3" />
-      </label>
+      <label>秘密客備註與建議（請填寫此次體驗的優點、缺點與改善建議）：<textarea rows="3" value={note} onChange={(e) => setNote(e.target.value)} /></label>
       
       <label>請上傳圖片：
         <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} required />
