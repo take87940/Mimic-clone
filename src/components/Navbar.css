@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  font-size: 16px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a:hover {
+  color: #004080;
+}
+
+/* 針對含 icon 的版本加強顯色（選中或主動強調） */
+.nav-links .active-link {
+  color: #004080;
+  font-weight: 600;
+}
+
+/* icon 大小一致 */
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 16px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* 讓文字稍大、icon也放大一點 */
+.mystery-link {
+  font-size: 18px;         /* 比其他 16px 稍大 */
+  font-weight: 600;
+}
+
+.mystery-link .nav-icon {
+  width: 40px;
+  height: 40px;
+}

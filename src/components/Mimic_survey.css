@@ -1,0 +1,40 @@
+.fancy-button {
+  display: inline-block;
+  padding: 14px 36px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #1f3a93, #6bb0d4, #1f3a93);
+  background-size: 300% 300%;
+  animation: gradientFlow 6s ease infinite;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center center;
+
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.fancy-button:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 10px 24px rgba(0, 128, 255, 0.5);
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
