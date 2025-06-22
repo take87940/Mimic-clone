@@ -10,6 +10,7 @@ export default function WatsonsSurveyForm({ onClose }) {
   const [storeName, setStoreName] = useState('');
   const [note, setNote] = useState('');
   const [file, setFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef();
 
   const handleScoreClick = (questionId, value) => {
@@ -23,6 +24,8 @@ export default function WatsonsSurveyForm({ onClose }) {
   const handleSubmit = async (e) => {
   e.preventDefault();
   if (!file) return alert('請選擇檔案');
+
+  setIsSubmitting(true);
 
   const reader = new FileReader();
   reader.onload = async () => {
@@ -59,6 +62,8 @@ export default function WatsonsSurveyForm({ onClose }) {
     } catch (err) {
       console.error(err);
       alert('送出失敗');
+    }finally {
+        setIsSubmitting(false);
     }
   };
 
@@ -83,8 +88,8 @@ export default function WatsonsSurveyForm({ onClose }) {
     <div className="survey-wrapper">
     <form className="survey-form" onSubmit={handleSubmit} ref={formRef}>
       <h2>屈臣氏 秘密客評分表</h2>
-      <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
-      <label>分店名稱：<input type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
+      <label>神秘客編號：<input className="survey-input" type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
+      <label>分店名稱：<input className="survey-input" type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
 
       <fieldset>
         <legend>1. 門市環境（滿分 20 分）</legend>
@@ -137,7 +142,15 @@ export default function WatsonsSurveyForm({ onClose }) {
       </label>
 
       <div className="form-actions">
-        <button type="submit">送出</button>
+        <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+                <>
+                <span className="spinner"></span>送出中...
+                </>
+            ) : (
+                '送出'
+            )}
+        </button>
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>

@@ -11,6 +11,7 @@ export default function SwappedSurveyForm({ onClose }) {
   const [note, setNote] = useState('');
   const [address, setAddress] = useState('');
   const [file, setFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef();
 
   const handleScoreClick = (questionId, value) => {
@@ -24,6 +25,8 @@ export default function SwappedSurveyForm({ onClose }) {
   const handleSubmit = async (e) => {
   e.preventDefault();
   if (!file) return alert('請選擇檔案');
+
+  setIsSubmitting(true);
 
   const reader = new FileReader();
   reader.onload = async () => {
@@ -60,6 +63,8 @@ export default function SwappedSurveyForm({ onClose }) {
     } catch (err) {
       console.error(err);
       alert('送出失敗');
+    }finally {
+        setIsSubmitting(false);
     }
   };
 
@@ -87,8 +92,8 @@ export default function SwappedSurveyForm({ onClose }) {
 
       <label>🌟 填寫購買地址：<input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required /></label>
       <label>並且截圖支付完成介面，否則不予以報銷！</label>
-      <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
-      <label>分店名稱：<input type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
+      <label>神秘客編號：<input className="survey-input" type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
+      <label>分店名稱：<input className="survey-input" type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
       <fieldset>
         <legend>1. 網站使用體驗（滿分 20 分）</legend>
         <label>網站介面清晰、容易操作（0-5 分）：{renderRating('q1')}</label>
@@ -142,7 +147,15 @@ export default function SwappedSurveyForm({ onClose }) {
       </label>
 
       <div className="form-actions">
-        <button type="submit">送出</button>
+        <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+                <>
+                <span className="spinner"></span>送出中...
+                </>
+            ) : (
+                '送出'
+            )}
+        </button>
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>

@@ -10,6 +10,7 @@ export default function BinanceSurveyForm({ onClose }) {
   const [note, setNote] = useState('');
   const [file, setFile] = useState(null);
   const [address, setAddress] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleScoreClick = (questionId, value) => {
     setScores(prev => ({ ...prev, [questionId]: value }));
@@ -22,6 +23,8 @@ export default function BinanceSurveyForm({ onClose }) {
   const handleSubmit = async (e) => {
   e.preventDefault();
   if (!file) return alert('請選擇檔案');
+  
+  setIsSubmitting(true);
 
   const reader = new FileReader();
   reader.onload = async () => {
@@ -58,6 +61,8 @@ export default function BinanceSurveyForm({ onClose }) {
     } catch (err) {
       console.error(err);
       alert('送出失敗');
+    } finally {
+        setIsSubmitting(false);
     }
   };
 
@@ -85,8 +90,8 @@ export default function BinanceSurveyForm({ onClose }) {
 
       <label>🌟 填寫購買地址（必填）：<input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required /></label>
       <label>並截圖支付完成介面，否則不予以報銷！</label>
-      <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
-      <label>分店名稱：<input type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
+      <label>神秘客編號：<input className="survey-input" type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
+      <label>分店名稱：<input className="survey-input" type="text" value={storeName} onChange={(e) => setStoreName(e.target.value)} required/></label>
 
       <fieldset>
         <legend>1. 購買流程體驗（滿分 30 分）</legend>
@@ -134,7 +139,15 @@ export default function BinanceSurveyForm({ onClose }) {
       </label>
 
       <div className="form-actions">
-        <button type="submit">送出</button>
+        <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+                <>
+                <span className="spinner"></span>送出中...
+                </>
+            ) : (
+                '送出'
+            )}
+        </button>
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>
