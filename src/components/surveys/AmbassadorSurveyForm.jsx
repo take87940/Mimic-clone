@@ -72,14 +72,17 @@ export default function AmbassadorSurveyForm({ onClose }) {
 
 
   const renderRating = (questionId, max = 5) => (
-  <div className="rating-group">
+  <div className="rating-group" key={`rating-${questionId}`}>
     {Array.from({ length: max + 1 }, (_, value) => (
       <div
-        key={value}
+        key={`q${questionId}-v${value}`}
         role="button"
         tabIndex={0}
         className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
-        onClick={() => handleScoreClick(questionId, value)}
+        onPointerDown={(e) => {
+          e.preventDefault(); // 防止瀏覽器預設拖動/點穿
+          handleScoreClick(questionId, value);
+        }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             handleScoreClick(questionId, value);
@@ -91,6 +94,7 @@ export default function AmbassadorSurveyForm({ onClose }) {
     ))}
   </div>
 );
+
 
 
   return (
