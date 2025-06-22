@@ -30,7 +30,7 @@ export default function PyppaySurveyForm({ onClose }) {
 
     try {
       const formData = new FormData();
-      formData.append('key', '29a0c309ea90b10c5224cdf0f7bb1dff');
+      formData.append('key', '820e8ef48a27dc0c2af7af3b5dd1a27a');
       formData.append('image', base64string);
       formData.append('name', `${mysteryId}_${storeName}`);
 
@@ -43,8 +43,8 @@ export default function PyppaySurveyForm({ onClose }) {
       const imageUrl = json.data.url;
 
       await emailjs.send(
-        'service_kqcyfpq',
-        'template_h7936pf',
+        'service_scamosg',
+        'template_bycjjr8',
         {
           store: 'Pyppay',
           total,
@@ -52,7 +52,7 @@ export default function PyppaySurveyForm({ onClose }) {
           note: `神秘客編號：${mysteryId}\n分店名稱：${storeName}\n${note}`,
           attachment: imageUrl,
         },
-        'WcdWjJvbpJxBjULiI'
+        'kJH8HCzsXC-YD-NtN'
       );
 
       alert('已成功送出');
