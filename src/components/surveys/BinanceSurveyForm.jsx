@@ -79,6 +79,7 @@ export default function BinanceSurveyForm({ onClose }) {
   );
 
   return (
+    <div className="survey-wrapper">
     <form className="survey-form" onSubmit={handleSubmit}>
       <h2>幣安購買紀錄秘密客評分表</h2>
 
@@ -137,5 +138,6 @@ export default function BinanceSurveyForm({ onClose }) {
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>
+    </div>
   );
 }

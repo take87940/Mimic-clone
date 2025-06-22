@@ -80,6 +80,7 @@ export default function DaisoSurveyForm({ onClose }) {
   );
 
   return (
+    <div className="survey-wrapper">
     <form className="survey-form" onSubmit={handleSubmit} ref={formRef}>
       <h2>大創 DAISO 秘密客評分表</h2>
       <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
@@ -139,5 +140,6 @@ export default function DaisoSurveyForm({ onClose }) {
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>
+    </div>
   );
 }

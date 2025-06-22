@@ -79,6 +79,7 @@ export default function PoYaSurveyForm({ onClose }) {
 };
 
   return (
+    <div className="survey-wrapper">
     <form className="survey-form" onSubmit={handleSubmit}>
       <h2>寶雅 秘密客評分表</h2>
       <label>神秘客編號：<input type="text" value={mysteryId} onChange={(e) => setMysteryId(e.target.value)} required/></label>
@@ -141,5 +142,6 @@ export default function PoYaSurveyForm({ onClose }) {
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>
+    </div>
   );
 }

@@ -79,6 +79,7 @@ export default function WarnerSurveyForm({ onClose }) {
   );
 
   return (
+    <div className="survey-wrapper">
     <form className="survey-form" onSubmit={handleSubmit} ref={formRef}>
       <h2>華納威秀影城 秘密客評分表</h2>
       
@@ -142,5 +143,6 @@ export default function WarnerSurveyForm({ onClose }) {
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>
+    </div>
   );
 }

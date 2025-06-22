@@ -1,15 +1,41 @@
 /* components/surveys/LouisaSurveyForm.css */
 
+.survey-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+/* 背景 logo */
+.survey-wrapper::before {
+  content: '';
+  position: absolute;       /* 關鍵：不再用 fixed，而是跟著 wrapper 走 */
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: url('./logo.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 表單內容在最上層 */
 .survey-form {
-  background: white;
-  padding: 32px;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-  font-family: "Noto Sans TC", sans-serif;
-  animation: fadeIn 0.3s ease;
-  margin: auto;
+  background-color: rgba(255, 255, 255, 0) !important;
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;
 }
 
 .survey-form h2 {
@@ -130,6 +156,9 @@ button:hover {
     transform: scale(1);
   }
 }
+
+
+
 
 @media (max-width: 768px) {
   .survey-form {

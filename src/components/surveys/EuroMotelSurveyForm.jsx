@@ -80,6 +80,7 @@ export default function EuroMotelSurveyForm({ onClose }) {
   );
 
   return (
+    <div className="survey-wrapper">
     <form className="survey-form" onSubmit={handleSubmit} ref={formRef}>
       <h2>歐遊汽車旅館 秘密客評分表</h2>
       
@@ -144,5 +145,6 @@ export default function EuroMotelSurveyForm({ onClose }) {
         <button type="button" onClick={onClose}>取消</button>
       </div>
     </form>
+    </div>
   );
 }
