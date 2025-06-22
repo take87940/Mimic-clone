@@ -72,19 +72,26 @@ export default function AmbassadorSurveyForm({ onClose }) {
 
 
   const renderRating = (questionId, max = 5) => (
-    <div className="rating-group">
-      {Array.from({ length: max + 1 }, (_, value) => (
-        <button
-          key={value}
-          type='button'
-          className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
-          onClick={() => handleScoreClick(questionId, value)}
-        >
-          {value}
-        </button>
-      ))}
-    </div>
-  );
+  <div className="rating-group">
+    {Array.from({ length: max + 1 }, (_, value) => (
+      <div
+        key={value}
+        role="button"
+        tabIndex={0}
+        className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
+        onClick={() => handleScoreClick(questionId, value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleScoreClick(questionId, value);
+          }
+        }}
+      >
+        {value}
+      </div>
+    ))}
+  </div>
+);
+
 
   return (
     <div className="survey-wrapper">
