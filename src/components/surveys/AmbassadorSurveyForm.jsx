@@ -74,23 +74,17 @@ export default function AmbassadorSurveyForm({ onClose }) {
   const renderRating = (questionId, max = 5) => (
   <div className="rating-group" key={`rating-${questionId}`}>
     {Array.from({ length: max + 1 }, (_, value) => (
-      <div
-        key={`q${questionId}-v${value}`}
-        role="button"
-        tabIndex={0}
-        className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
-        onPointerDown={(e) => {
-          e.preventDefault(); // 防止瀏覽器預設拖動/點穿
-          handleScoreClick(questionId, value);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleScoreClick(questionId, value);
-          }
-        }}
-      >
+      <label key={`q${questionId}-${value}`} className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}>
+        <input
+          type="radio"
+          name={`q-${questionId}`}
+          value={value}
+          checked={scores[questionId] === value}
+          onChange={() => handleScoreClick(questionId, value)}
+          style={{ display: 'none' }} // 隱藏 input, 只讓 label 外觀控制
+        />
         {value}
-      </div>
+      </label>
     ))}
   </div>
 );
