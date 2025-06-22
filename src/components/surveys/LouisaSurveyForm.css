@@ -104,6 +104,8 @@
   font-weight: bold;
   color: #2f6db7;
   user-select: none;
+    border: none;         /* 這一行關鍵：移除預設邊框 */
+  outline: none;        /* 這一行關鍵：避免聚焦時浮出藍框 */
 }
 
 .rating-option.selected {
