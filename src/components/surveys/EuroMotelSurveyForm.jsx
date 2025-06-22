@@ -13,7 +13,10 @@ export default function EuroMotelSurveyForm({ onClose }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef();
 
-  const handleScoreClick = (questionId, value) => {
+  const handleScoreClick = (questionId, value, event) => {
+    // 防止事件冒泡
+    event?.preventDefault();
+    event?.stopPropagation();
     setScores(prev => ({ ...prev, [questionId]: value }));
   };
 
@@ -71,15 +74,34 @@ export default function EuroMotelSurveyForm({ onClose }) {
 };
 
   const renderRating = (questionId, max = 5) => (
-    <div className="rating-group">
+    <div className="rating-group" key={`rating-${questionId}`}>
       {Array.from({ length: max + 1 }, (_, value) => (
-        <div
-          key={value}
+        <label 
+          key={`q${questionId}-${value}`} 
           className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
-          onClick={() => handleScoreClick(questionId, value)}
+          onTouchStart={(e) => {
+            // 防止滚动时意外触发
+            e.stopPropagation();
+            handleScoreClick(questionId, value, e);
+          }}
+          onClick={(e) => {
+            // 防止重复触发
+            e.preventDefault();
+            e.stopPropagation();
+            handleScoreClick(questionId, value, e);
+          }}
         >
+          <input
+            type="radio"
+            name={`q-${questionId}`}
+            value={value}
+            checked={scores[questionId] === value}
+            onChange={() => {}} // 空函数，实际处理在 label 的事件中
+            style={{ display: 'none' }}
+            tabIndex={-1} // 避免键盘导航时被选中
+          />
           {value}
-        </div>
+        </label>
       ))}
     </div>
   );
