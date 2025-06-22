@@ -93,29 +93,50 @@
   gap: 8px;
   margin-top: 4px;
   margin-bottom: 12px;
+  flex-wrap: wrap; /* 允许换行，防止小屏幕上挤压 */
 }
 
 .rating-option {
   background: #d2e6f7;
-  padding: 6px 12px;
+  padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-weight: bold;
   color: #2f6db7;
   user-select: none;
-    border: none;         /* 這一行關鍵：移除預設邊框 */
-  outline: none;        /* 這一行關鍵：避免聚焦時浮出藍框 */
+  border: none;         /* 移除預設邊框 */
+  outline: none;        /* 避免聚焦時浮出藍框 */
+  
+  /* 改善移动端触摸体验 */
+  touch-action: manipulation; /* 禁用双击缩放，提高响应速度 */
+  -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
+  position: relative;
+  min-width: 44px; /* 确保触摸目标足够大（iOS/Android 建议最小 44px） */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: normal; /* 恢复正常行高 */
+  box-sizing: border-box; /* 确保padding计算正确 */
 }
 
 .rating-option.selected {
   background: #3c7dc4;
   color: white;
+  transform: scale(1.05); /* 轻微放大选中项，增强视觉反馈 */
 }
 
 .rating-option:hover {
   background: #2b6ab0;
   color: white;
+}
+
+/* 移动端特殊处理 */
+.rating-option:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
 }
 
 textarea {
@@ -163,6 +184,8 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
+  touch-action: manipulation; /* 改善按钮触摸体验 */
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
@@ -180,9 +203,6 @@ button:hover {
   }
 }
 
-
-
-
 @media (max-width: 768px) {
   .survey-form {
     max-height: 90vh;          /* 最多佔螢幕 90% 高度 */
@@ -196,9 +216,24 @@ button:hover {
     margin-bottom: 24px;
   }
 
+  .rating-group {
+    gap: 6px; /* 移动端稍微减少间距 */
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   .rating-option {
-    padding: 6px 10px;
+    padding: 8px 12px; /* 恢复合适的padding */
     font-size: 14px;
+    min-width: 40px;
+    min-height: 40px;
+    /* 增强移动端选中状态的视觉反馈 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .rating-option.selected {
+    box-shadow: 0 4px 8px rgba(60, 125, 196, 0.3);
+    transform: scale(1.08); /* 移动端更明显的选中反馈 */
   }
 
   .form-actions {
@@ -209,6 +244,26 @@ button:hover {
   button {
     width: 100%;
     font-size: 14px;
-    padding: 10px;
+    padding: 12px; /* 增加按钮内边距，改善触摸体验 */
+    min-height: 44px; /* 确保按钮够大 */
+  }
+
+  /* 防止移动端滚动时意外选择文本 */
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* 但允许输入框和文本区域选择文本 */
+  input, textarea {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
   }
 }
