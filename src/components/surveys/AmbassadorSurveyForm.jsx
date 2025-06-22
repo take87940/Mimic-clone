@@ -74,13 +74,13 @@ export default function AmbassadorSurveyForm({ onClose }) {
   const renderRating = (questionId, max = 5) => (
     <div className="rating-group">
       {Array.from({ length: max + 1 }, (_, value) => (
-        <div
+        <button
           key={value}
           className={`rating-option ${scores[questionId] === value ? 'selected' : ''}`}
           onClick={() => handleScoreClick(questionId, value)}
         >
           {value}
-        </div>
+        </button>
       ))}
     </div>
   );
